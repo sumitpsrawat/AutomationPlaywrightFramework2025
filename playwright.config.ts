@@ -22,9 +22,9 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 2,
+  retries: process.env.CI ? 1 : 2,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 3 : 2,
+  workers: process.env.CI ? 2 : 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html',], 
               ['list'], 
@@ -40,16 +40,14 @@ export default defineConfig({
     trace: 'on-first-retry',
     actionTimeout: 15000, 
     screenshot: 'only-on-failure',
-    ignoreHTTPSErrors: true,
-    launchOptions: { args: ['--disable-http2'] }, 
   },
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
 
     {
       name: 'firefox',
@@ -62,14 +60,14 @@ export default defineConfig({
     // },
 
     /* Test against mobile viewports. */
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
-    },
     // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
+    //   name: 'Mobile Chrome',
+    //   use: { ...devices['Pixel 5'] },
     // },
+    {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 12'] },
+    },
 
     /* Test against branded browsers. */
     // {
