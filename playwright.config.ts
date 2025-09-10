@@ -40,6 +40,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     actionTimeout: 15000, 
     screenshot: 'only-on-failure',
+    ignoreHTTPSErrors: true,
   },
 
   /* Configure projects for major browsers */
