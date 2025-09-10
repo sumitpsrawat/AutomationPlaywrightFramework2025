@@ -30,10 +30,10 @@ export class RecipesPage extends BasePage {
 
     async VerifyAllRecipes() {
         const recipeCount = await this.recipeTitleText.count();
-        console.log(`Total recipes found: ${recipeCount}`);
+        // console.log(`Total recipes found: ${recipeCount}`);
         for (let i = 0; i < 9; i++) {
             const recipeName = await this.recipeTitleText.nth(i).textContent();
-            console.log(`Recipe ${i + 1}: ${recipeName}`);
+            // console.log(`Recipe ${i + 1}: ${recipeName}`);
             await this.recipeTitleText.nth(i).click();
             const detailTitle = await this.recipeDetailTitle.textContent(); //header for recipe title in overview page
             if (detailTitle?.trim() === recipeName?.trim()) {

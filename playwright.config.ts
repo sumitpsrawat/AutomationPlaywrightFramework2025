@@ -41,6 +41,7 @@ export default defineConfig({
     actionTimeout: 15000, 
     screenshot: 'only-on-failure',
     ignoreHTTPSErrors: true,
+    launchOptions: { args: ['--disable-http2'] }, 
   },
 
   /* Configure projects for major browsers */

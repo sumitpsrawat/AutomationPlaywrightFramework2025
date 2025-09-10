@@ -13,10 +13,10 @@ export async function smartLocator(
     const element = page.locator(selector).first();
     try {
       await element.waitFor({ state: "visible", timeout });
-      console.log(`✅ Found element with selector: ${selector}`);
+      // console.log(`✅ Found element with selector: ${selector}`);
       return element;
     } catch {
-      console.log(`⚠️ Selector did not match: ${selector}`);
+      // console.log(`⚠️ Selector did not match: ${selector}`);
       // Try next selector
     }
   }
