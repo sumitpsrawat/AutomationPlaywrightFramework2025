@@ -8,3 +8,4 @@ node_modules/
 # playwright.config.ts
 /allure-results/
 /allure-report/
+/package-lock.json
