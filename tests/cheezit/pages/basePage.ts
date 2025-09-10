@@ -52,4 +52,12 @@ export class BasePage {
     async clickAcceptCookies() {
         await this.page.getByRole('button', { name: 'OK', exact: true }).click();
     }
+
+    async clickonHamburgerMenu(isMobile: boolean) {
+        isMobile ? await this.page.getByRole('button', { name: 'hamburger menu' }).click() : null;
+    }
+
+    async navigateToHomePage() {
+        await this.page.goto(this.url, { waitUntil: 'load' });
+    }
 }

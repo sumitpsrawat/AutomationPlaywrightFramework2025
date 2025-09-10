@@ -6,7 +6,6 @@ test.describe('Cheezit - My Account page Test Case', () => {
   test('Cheezit: My Account page validation', async ({ page, isMobile }) => {
     const loginPage = new LoginPage(page);
     const myAccountPage = new MyAccountPage(page);
-
     await loginPage.navigateTo('https://www.cheezit.com/en-us/home.html');
     await loginPage.clickAcceptCookies();
     await loginPage.clickonHamburgerMenu(isMobile);

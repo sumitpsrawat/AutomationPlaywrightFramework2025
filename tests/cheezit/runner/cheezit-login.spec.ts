@@ -18,18 +18,18 @@ test.describe('Cheezit - Login Tests', () => {
     await loginPage.clickAcceptCookies();
     await loginPage.clickonHamburgerMenu(isMobile);
     await loginPage.navigateToMyAccount();
-    await loginPage.login('notaemail','pass@123');
+    await loginPage.login('notaemail', 'pass@123');
     await loginPage.clickonSignIn();
     await loginPage.expectTextVisible('Please enter a valid email address');
   });
 
-    test('Cheezit: Login with invalid password Credentials', async ({ page, isMobile }) => {
+  test('Cheezit: Login with invalid password Credentials', async ({ page, isMobile }) => {
     const loginPage = new LoginPage(page);
     await loginPage.navigateTo('https://www.cheezit.com/en-us/home.html');
     await loginPage.clickAcceptCookies();
     await loginPage.clickonHamburgerMenu(isMobile);
     await loginPage.navigateToMyAccount();
-    await loginPage.login('sumit@email.com','notapassword');
+    await loginPage.login('sumit@email.com', 'notapassword');
     await loginPage.expectTextVisible('The account sign-in was incorrect');
   });
 

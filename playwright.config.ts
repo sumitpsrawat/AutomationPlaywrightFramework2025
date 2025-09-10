@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: './tests/cheezit/',
   /* Run tests in files in parallel */
   fullyParallel: true,
   timeout: 60 * 3 * 1000,
@@ -26,7 +26,10 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 2 : 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html',], 
+              ['list'], 
+              ['allure-playwright']
+            ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     headless: true, // Run tests in headless mode by default
@@ -36,6 +39,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     actionTimeout: 15000, 
+    screenshot: 'only-on-failure',
   },
 
   /* Configure projects for major browsers */

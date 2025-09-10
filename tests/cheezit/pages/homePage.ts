@@ -3,11 +3,17 @@ import { BasePage } from './basePage';
 
 export class HomePage extends BasePage {
 
-    readonly MenuProductsLink: Locator;
+  readonly MenuProductsLink: Locator;
+  readonly prodouctsNavMenuLink: Locator;
+  readonly outImpactNavMenuLink: Locator;
+  readonly recipesNavMenuLink: Locator;
 
   constructor(page: Page) {
-    super(page, 'https://shop.cheezit.com/');
+    super(page, 'https://cheezit.com/');
     this.MenuProductsLink = this.page.getByLabel('menu', { exact: true }).getByRole('link', { name: 'Products' });
+    this.prodouctsNavMenuLink = page.locator("#menu a[href*='products.html']");
+    this.outImpactNavMenuLink = page.locator("#menu a[href*='our-impact.html']");
+    this.recipesNavMenuLink = page.locator("#menu a[href*='recipes.html']");
   }
 
   // Locators
@@ -21,11 +27,6 @@ export class HomePage extends BasePage {
 
   get heroImage() {
     return this.page.locator('.hero-banner img');
-  }
- 
-  // Methods
-  async clickProductsNavMenu() {
-    await this.MenuProductsLink.click();
   }
 
   /**
@@ -51,7 +52,7 @@ export class HomePage extends BasePage {
 
         // Skip check if src is a data URI or null
         if (!src || src.startsWith('data:')) {
-        //   console.warn(`➡️ Skipping network check for empty or data URI src on image with alt: "${altText}"`);
+          //   console.warn(`➡️ Skipping network check for empty or data URI src on image with alt: "${altText}"`);
           continue;
         }
 
@@ -59,11 +60,11 @@ export class HomePage extends BasePage {
         const baseUrl = this.page.url();
         const imageUrl = new URL(src, baseUrl).href;
         // The URL object correctly handles both relative and protocol-less absolute paths.
-        
+
         // Check the network integrity
         const imageResponse = await this.page.request.get(imageUrl, { timeout: 20000 });
         await expect(imageResponse.status()).toBe(200);
-        
+
         // console.log(`✅ Image with alt text "${altText}" loaded successfully from: ${imageUrl}`);
 
       } catch (error) {
@@ -71,6 +72,19 @@ export class HomePage extends BasePage {
         throw error;
       }
     }
+  }
+
+  async clickProductsNavMenu() {
+    await this.prodouctsNavMenuLink.hover({ force: true });
+    await this.prodouctsNavMenuLink.click();
+  }
+
+  async clickOurImpactNavMenu() {
+    await this.outImpactNavMenuLink.click();
+  }
+
+  async clickRecipesNavMenu() {
+    await this.recipesNavMenuLink.click();
   }
 
 }

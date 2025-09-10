@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from './basePage';
+import { smartLocator } from '../utils/selfHealingHelper';
 
 export class LoginPage extends BasePage {
     readonly emailInput: Locator;
@@ -25,9 +26,6 @@ export class LoginPage extends BasePage {
         await this.signInButton.click();
     }
 
-    async clickonHamburgerMenu(isMobile: boolean) {
-        isMobile ? await this.page.getByRole('button', { name: 'hamburger menu' }).click() : null;
-    }
 
     async clickAcceptCookies() {
         await this.page.getByRole('button', { name: 'OK', exact: true }).click();
