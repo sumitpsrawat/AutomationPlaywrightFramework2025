@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('Cheezit: Validate all social links on footer section', async ({ page }) => {
-    await page.goto('https://www.cheezit.com/');
+    await page.goto('https://www.cheezit.com/', { waitUntil: 'domcontentloaded' });
     await page.getByRole('button', { name: 'OK', exact: true }).click();
 
     //verify all social links in footer section and links are working

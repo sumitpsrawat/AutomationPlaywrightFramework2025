@@ -2,7 +2,7 @@ import { Page, expect } from '@playwright/test';
 
 export class BasePage {
     readonly page: Page;
-    readonly url: string = 'https://cheezit.com/';
+    readonly url: string = 'https://www.cheezit.com/';
 
     constructor(page: Page, url: string) {
         this.page = page;
@@ -13,7 +13,7 @@ export class BasePage {
         if (this.page.isClosed()) {
             throw new Error('Cannot navigate: page is already closed.');
         }
-        await this.page.goto(url, { waitUntil: 'load' });
+        await this.page.goto(url, { waitUntil: 'domcontentloaded' });
     }
 
     async verifyUrl(expectedUrl: string) {
@@ -58,6 +58,6 @@ export class BasePage {
     }
 
     async navigateToHomePage() {
-        await this.page.goto(this.url, { waitUntil: 'load' });
+        await this.page.goto(this.url, { waitUntil: 'domcontentloaded' });
     }
 }
