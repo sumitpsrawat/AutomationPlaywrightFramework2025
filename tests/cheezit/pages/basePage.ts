@@ -13,7 +13,7 @@ export class BasePage {
         if (this.page.isClosed()) {
             throw new Error('Cannot navigate: page is already closed.');
         }
-        await this.page.goto(url, { waitUntil: 'domcontentloaded' });
+        await this.page.goto(url, { waitUntil: 'load' });
     }
 
     async verifyUrl(expectedUrl: string) {
@@ -58,6 +58,6 @@ export class BasePage {
     }
 
     async navigateToHomePage() {
-        await this.page.goto(this.url, { waitUntil: 'domcontentloaded' });
+        await this.page.goto(this.url, { waitUntil: 'load' });
     }
 }

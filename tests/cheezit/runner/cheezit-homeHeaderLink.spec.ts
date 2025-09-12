@@ -5,7 +5,7 @@ import { HomePage } from '../pages/homePage';
 test.describe('Cheezit - Home Page Navigation Header Link Validation', () => {
     test('Cheezit: Header Link and Text Validation', async ({ page, isMobile }) => {
         const homePage = new HomePage(page);
-        await homePage.navigateTo('https://www.cheezit.com/en-us/home.html');
+        await homePage.navigateTo('https://www.cheezit.com/');
         await homePage.clickAcceptCookies();
 
         await homePage.clickonHamburgerMenu(isMobile);

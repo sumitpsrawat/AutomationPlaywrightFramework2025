@@ -37,7 +37,7 @@ export class HomePage extends BasePage {
     // Get a locator for all <img> tags on the page
     const allImageLocators = await this.page.locator('//img').all();
 
-    console.log(`Found ${allImageLocators.length} images to verify.`);
+    // console.log(`Found ${allImageLocators.length} images to verify.`);
 
     // Iterate through each image locator and perform checks
     for (const imageLocator of allImageLocators) {
@@ -56,7 +56,7 @@ export class HomePage extends BasePage {
           continue;
         }
 
-        // --- Fix is here: Construct a full URL ---
+        // --- Construct a full URL ---
         const baseUrl = this.page.url();
         const imageUrl = new URL(src, baseUrl).href;
         // The URL object correctly handles both relative and protocol-less absolute paths.
@@ -65,10 +65,10 @@ export class HomePage extends BasePage {
         const imageResponse = await this.page.request.get(imageUrl, { timeout: 20000 });
         await expect(imageResponse.status()).toBe(200);
 
-        // console.log(`✅ Image with alt text "${altText}" loaded successfully from: ${imageUrl}`);
+        // console.log(` Image with alt text "${altText}" loaded successfully from: ${imageUrl}`);
 
       } catch (error) {
-        // console.error(`❌ Failed to verify an image: ${error.message}`);
+        // console.error(` Failed to verify an image: ${error.message}`);
         throw error;
       }
     }
